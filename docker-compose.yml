@@ -1,0 +1,21 @@
+version: '3'
+services:
+  api:
+    image: eeshashahid/backend:latest
+    ports:
+      - "4000:4000"
+    environment:
+      CLOUDINARY_CLOUD_NAME: dw7u2svrb
+      CLOUDINARY_API_KEY: 678721661399533
+      CLOUDINARY_API_SECRET: J1zV4QJHEJXv7tJxRMKTfbyuHYI
+      MONGO_URL: mongodb+srv://admin:airglobe123@ag-cluster.58vdwse.mongodb.net/airglobe
+      SECRET_KEY: airglobe
+
+  client:
+    image: eeshashahid/frontend:latest
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_API_BASE_URL: "http://16.170.231.74:4000/api" 
+    depends_on:
+      - api
