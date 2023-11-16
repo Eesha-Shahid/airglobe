@@ -1,8 +1,8 @@
 # Use the official Node.js image as the base image
-FROM node:18.15.0
+FROM node:18-alpine
 
 # Set the working directory to /app
-WORKDIR /app
+WORKDIR /usr/src/api
 
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
@@ -12,6 +12,8 @@ RUN npm install
 
 # Copy the entire project to the working directory
 COPY . .
+
+RUN npm run build
 
 # Set environment variables
 ENV CLOUDINARY_CLOUD_NAME=dw7u2svrb

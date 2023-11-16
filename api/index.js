@@ -52,7 +52,7 @@ const connectDB = async () => {
 
     mongoose.set('strictQuery', false);
     // Connect to MongoDB
-    mongoose.connect('mongodb+srv://admin:airglobe123@ag-cluster.58vdwse.mongodb.net/?retryWrites=true&w=majority', {
+    mongoose.connect('mongodb+srv://admin:airglobe123@ag-cluster1.rno0037.mongodb.net/?retryWrites=true&w=majority', {
         useNewUrlParser: true,
         useUnifiedTopology: true
     }).then(() => {

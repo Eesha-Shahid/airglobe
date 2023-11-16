@@ -1,21 +1,38 @@
 version: '3'
 services:
-  api:
-    image: eeshashahid/backend:latest
-    ports:
-      - "4000:4000"
-    environment:
-      CLOUDINARY_CLOUD_NAME: dw7u2svrb
-      CLOUDINARY_API_KEY: 678721661399533
-      CLOUDINARY_API_SECRET: J1zV4QJHEJXv7tJxRMKTfbyuHYI
-      MONGO_URL: mongodb+srv://admin:airglobe123@ag-cluster.58vdwse.mongodb.net/airglobe
-      SECRET_KEY: airglobe
-
-  client:
-    image: eeshashahid/frontend:latest
+  frontend:
+    build: ./client
+    container_name: react-ui
     ports:
       - "5173:5173"
-    environment:
-      VITE_API_BASE_URL: "http://16.170.231.74:4000/api" 
+    stdin_open: true
+    tty: true
+    depends_on: 
+      - backend
+    networks:
+      mern-network
+
+  backend:
+    build: ./api
+    container_name: node-api
+    restart: always
+    ports:
+      - "4000:4000"
     depends_on:
-      - api
+      -database
+    networks:
+      mern-network
+
+  database:
+    imaeg: mongo
+    container_name: mongo-db 
+    ports: 
+      - "27017:27017"
+    volumes: 
+      - /home/ubuntu/mongo-backup:/data/db
+    networks:
+      mern-network
+
+networks:
+  mern-network:
+    driver: bridge
