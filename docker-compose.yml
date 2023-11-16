@@ -7,10 +7,10 @@ services:
       - "5173:5173"
     stdin_open: true
     tty: true
-    depends_on: 
+    depends_on:
       - backend
     networks:
-      mern-network
+      - mern-network
 
   backend:
     build: ./api
@@ -19,19 +19,19 @@ services:
     ports:
       - "4000:4000"
     depends_on:
-      -database
+      - database
     networks:
-      mern-network
+      - mern-network
 
   database:
-    imaeg: mongo
+    image: mongo
     container_name: mongo-db 
     ports: 
       - "27017:27017"
     volumes: 
       - /home/ubuntu/mongo-backup:/data/db
     networks:
-      mern-network
+      - mern-network
 
 networks:
   mern-network:
