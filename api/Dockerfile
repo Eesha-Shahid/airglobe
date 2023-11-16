@@ -13,8 +13,6 @@ RUN npm install
 # Copy the entire project to the working directory
 COPY . .
 
-RUN npm run build
-
 # Set environment variables
 ENV CLOUDINARY_CLOUD_NAME=dw7u2svrb
 ENV CLOUDINARY_API_KEY=678721661399533
